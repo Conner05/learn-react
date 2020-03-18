@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    /****************************************************
+        SUMMARY:
+        The following code is basically writing HTML with JavaScript.
+        At it's heart, that's what React does. It creates HTML from JavaScript.
+
+        TODO:
+        rewrite the following using React's createElement() API - https://reactjs.org/docs/react-api.html#createelement
+        and use ReactDOM to display the element on the page - https://reactjs.org/docs/react-dom.html#render
+    *****************************************************/
+
+    const root = document.getElementById('root');
+    const newDiv = document.createElement('div');
+    newDiv.className = '';
+    newDiv.textContent = 'Hello World';
+    root.appendChild(newDiv);
+</script>
+
+</html>

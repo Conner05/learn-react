@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<style>
+    .red {
+        color: red;
+    }
+
+    .blue {
+        color: blue;
+    }
+</style>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    /****************************************************
+        SUMMARY:
+        Up to this point our JSX elements have been variables. Now we will add some complexity
+        by showing how we can move from variables to components - starting with function components
+
+        TODO:
+        - Refactor newDiv into a function component - https://reactjs.org/docs/components-and-props.html
+        - Note the difference between a capitalized component and a lowercase component
+    *****************************************************/
+
+    const root = document.getElementById('root');
+    const props = { className: 'red', children: 'Hello World' };
+    const newDiv = <div {...props} className='blue' />;
+    ReactDOM.render(newDiv, root);
+</script>
+
+</html>

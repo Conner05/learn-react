@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<style>
+    .red {
+        color: red;
+    }
+</style>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    /****************************************************
+        SOLUTION
+
+        Note
+        -   if you're unfamiliar with the elipses, that is an ES6 feature called the spread operator
+            https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+            - it basically "unpacks" the object it references
+    *****************************************************/
+
+    const root = document.getElementById('root');
+    const props = { className: 'red', children: 'Hello World' };
+    const newDiv = <div {...props} />;
+    ReactDOM.render(newDiv, root);
+</script>
+
+</html>

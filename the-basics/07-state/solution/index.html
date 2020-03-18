@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<style>
+    .red {
+        color: red;
+    }
+    .blue {
+        color: blue;
+    }
+</style>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    /****************************************************
+        SUMMARY:
+        Introducing state and lifecycle methods. In this ticking clock example we'll transform 
+        the clock into a reusable component that is encapsulated.
+
+        NOTES:
+        -   Follow along with this example on the React docs - https://reactjs.org/docs/state-and-lifecycle.html
+        -   class components expose a state object and a setState() method. 
+            That's the proper way to update state.
+        -   we declared interval inside a function and referenced it in another function - that's a
+            JavaScript thing.
+    *****************************************************/
+
+    class Clock extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { date: new Date() };
+        }
+
+        componentDidMount() {
+            this.interval = setInterval(() => this.setState({ date: new Date() }), 1000);
+        }
+
+        componentWillUnmount() {
+            clearInterval(this.interval);
+        }
+
+        render() {
+            return <div><h2>Time: {this.state.date.toLocaleTimeString()}</h2></div>
+        }
+    }
+    ReactDOM.render(<Clock />, document.getElementById('root'));
+</script>
+
+</html>

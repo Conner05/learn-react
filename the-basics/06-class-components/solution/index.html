@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<style>
+    .red {
+        color: red;
+    }
+    .blue {
+        color: blue;
+    }
+</style>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    /****************************************************
+        SOLUTION
+
+        Note
+        -   class components must extend React.Component
+        -   notice the differnce in the rendering when a component is capitalized vs lowercase
+    *****************************************************/
+
+    class HelloWorld extends React.Component {
+        render() {
+            return <div {...this.props} />
+        }
+    }
+    const root = document.getElementById('root');
+    const props = { className: 'red', children: 'Hello World' };
+    const newDiv = <HelloWorld {...props} />;
+    ReactDOM.render(newDiv, root);
+</script>
+
+</html>

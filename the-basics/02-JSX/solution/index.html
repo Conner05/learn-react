@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    /****************************************************
+        SOLUTION
+
+        Note:
+        -   we added a script tag for the Babel CDN
+        -   the type of script for this code block is now text/babel - per babel's instructions (this is really just so IDEs can recognize valid JSX)
+    *****************************************************/
+
+    const root = document.getElementById('root');
+    const newDiv = <div className=''>Hello World</div>;
+    ReactDOM.render(newDiv, root);
+</script>
+
+</html>
