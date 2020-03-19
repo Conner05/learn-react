@@ -13,4 +13,6 @@
 - How to create function components
 - How to create class components
 - The difference between state and props
+- How to use state
 - What component encapsulation is
+- How to handle click and change events in React components
