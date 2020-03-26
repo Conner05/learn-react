@@ -11,13 +11,15 @@
 </body>
 <script type="text/babel">
   /****************************************************
-      SOLUTION
-
-      NOTES:
-      There's quite a bit going on here. Let's talk about it.
-      - we did not use preventDefault() because we're not in a <form>
-      - we introduced the onChange={} attribute
-      - we used state with multiple properties
+    SUMMARY:
+    This module is all about scope. We're gonna learn how to properly handle scope with event handlers
+    In the previous module we made the functions arrow functions. Arrow functions automatically bind
+    'this' to the scope of the method. Regular functions do not do that. In order to access 'this' inside
+    regular functions you need to 'bind' 'this' to the function.
+    - https://reactjs.org/docs/handling-events.html
+    
+    TODO:
+    - add binding for the functions below so the code works again
   *****************************************************/
 
   class App extends React.Component {
@@ -26,11 +28,11 @@
       this.state = { inputValue: '', labelValue: '' };
     }
 
-    handleSubmit = (e) => {
+    handleSubmit(e) {
       this.setState({ labelValue: this.state.inputValue })
     }
 
-    handleInputChange = (e) => {
+    handleInputChange(e) {
       this.setState({ inputValue: e.target.value })
     }
 

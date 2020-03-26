@@ -1,11 +1,13 @@
 <html>
-
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <head>
 </head>
 <body>
     <div id="root"></div>
 </body>
-<script>
+<script type="text/babel">
     /****************************************************
         SUMMARY:
         Handling events in React is similar to handling events in Javascript.
@@ -19,7 +21,7 @@
         TODO:
         - modify the following Javascript to the "React way"
         - note you'll need to use tools you've learned in previous modules to do this
-            - HINT: we're starting from scratch, so you'll need to reference some libraries
+        - https://reactjs.org/docs/handling-events.html
     *****************************************************/
 
     function handleSubmit(e) {

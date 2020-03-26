@@ -1,0 +1,31 @@
+<html>
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  /**************************************************** 
+    SUMMARY
+    Rendering lists in Javascript is as easy as using the .map() function.
+    You can place JSX inside the arrow function.
+    Notice, though, there is an error in the console. React wants a key property on each list item.
+    More on that here: https://reactjs.org/docs/lists-and-keys.html
+
+    TODO:
+    - add a key to the rendered list
+  *****************************************************/
+  class App extends React.Component {
+
+    numbers = [1,2,3,4,5];
+    
+    render() {
+      return this.numbers.map(n => <div>{n}</div>)
+    }
+  }
+  ReactDOM.render(<App />, root);
+</script>
+</html>

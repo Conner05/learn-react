@@ -14,10 +14,9 @@
       SOLUTION
 
       NOTES:
-      There's quite a bit going on here. Let's talk about it.
-      - we did not use preventDefault() because we're not in a <form>
-      - we introduced the onChange={} attribute
-      - we used state with multiple properties
+      - We converted the function definition in the event handler to an arrow function.
+      - We probably should avoid this, though, because when functions are passed as props
+        it's possible we could run into some unintentional re-renders
   *****************************************************/
 
   class App extends React.Component {
@@ -26,19 +25,19 @@
       this.state = { inputValue: '', labelValue: '' };
     }
 
-    handleSubmit = (e) => {
+    handleSubmit(e) {
       this.setState({ labelValue: this.state.inputValue })
     }
 
-    handleInputChange = (e) => {
+    handleInputChange(e) {
       this.setState({ inputValue: e.target.value })
     }
 
     render() {
       return (
         <div>
-          <input type="text" name='test' onChange={this.handleInputChange} value={this.state.inputValue} />
-          <button type="submit" onClick={this.handleSubmit}>Submit</button>
+          <input type="text" name='test' onChange={(e) => this.handleInputChange(e)} value={this.state.inputValue} />
+          <button type="submit" onClick={(e) => this.handleSubmit(e)}>Submit</button>
           <label style={{ marginLeft: '20px' }}>{this.state.labelValue}</label>
         </div>
       )

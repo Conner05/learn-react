@@ -1,0 +1,52 @@
+<html>
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  /**************************************************** 
+    SOLUTION
+  *****************************************************/
+  class App extends React.Component {
+    constructor(props) {
+    super(props);
+    this.state = {value: '', submitted: ''};
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+      this.setState({value: e.target.value})
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({submitted: this.state.value})
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name:
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+        <div>
+          <label>input value: {this.state.value}</label>
+        </div>
+        <div><label>submitted: {this.state.submitted}</label></div>
+      </div>
+    );
+  }
+  }
+  ReactDOM.render(<App />, root);
+</script>
+</html>

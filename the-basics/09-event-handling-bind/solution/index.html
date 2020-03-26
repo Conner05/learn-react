@@ -24,13 +24,15 @@
     constructor(props) {
       super(props);
       this.state = { inputValue: '', labelValue: '' };
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    handleSubmit = (e) => {
+    handleSubmit(e) {
       this.setState({ labelValue: this.state.inputValue })
     }
 
-    handleInputChange = (e) => {
+    handleInputChange(e) {
       this.setState({ inputValue: e.target.value })
     }
 

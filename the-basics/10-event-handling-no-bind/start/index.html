@@ -11,13 +11,18 @@
 </body>
 <script type="text/babel">
   /****************************************************
-      SOLUTION
-
-      NOTES:
-      There's quite a bit going on here. Let's talk about it.
-      - we did not use preventDefault() because we're not in a <form>
-      - we introduced the onChange={} attribute
-      - we used state with multiple properties
+    SUMMARY:
+    The goal of this module is to make the code work without using bind and without arrow function definitions.
+    Then, we'll learn why we probably shouldn't do that.
+    To quote the React docs, 
+      "if this callback is passed as a prop to lower components, 
+      those components might do an extra re-rendering. We generally 
+      recommend binding in the constructor or using the class fields syntax, 
+      to avoid this sort of performance problem."
+    - https://reactjs.org/docs/handling-events.html
+    
+    TODO:
+    - use arrow functions in the callback in order to make the app work
   *****************************************************/
 
   class App extends React.Component {
@@ -26,11 +31,11 @@
       this.state = { inputValue: '', labelValue: '' };
     }
 
-    handleSubmit = (e) => {
+    handleSubmit(e) {
       this.setState({ labelValue: this.state.inputValue })
     }
 
-    handleInputChange = (e) => {
+    handleInputChange(e) {
       this.setState({ inputValue: e.target.value })
     }
 

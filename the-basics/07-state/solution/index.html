@@ -36,11 +36,11 @@
             super(props);
             this.state = { date: new Date() };
         }
-
+        // start
         componentDidMount() {
             this.interval = setInterval(() => this.setState({ date: new Date() }), 1000);
         }
-
+        // cleanup - destroy
         componentWillUnmount() {
             clearInterval(this.interval);
         }
