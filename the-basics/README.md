@@ -16,3 +16,8 @@
 - How to use state
 - What component encapsulation is
 - How to handle click and change events in React components
+- How to utilize the component lifecycle methods
+- How to coniditionally render components
+- How to render a list of items
+- The key prop and its importance
+- Basic form functionality
