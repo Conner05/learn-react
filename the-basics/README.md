@@ -21,3 +21,6 @@
 - How to render a list of items
 - The key prop and its importance
 - Basic form functionality
+- How to lift state up
+- What composition is and how to utilize it
+- Some practical tips to keep components clean
