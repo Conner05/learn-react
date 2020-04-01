@@ -11,14 +11,10 @@
 </body>
 <script type="text/babel"> 
   function Inside(props) {
-    return (
-      <button onClick={props.handleClick}>Leave</button>
-    )
+    return <button onClick={props.handleClick}>Leave</button>
   }
   function Outside(props) {
-    return (
-      <button onClick={props.handleClick}>Enter</button>
-    )
+    return <button onClick={props.handleClick}>Enter</button>
   }
 
   const STATUS = { neverEntered: 'neverEntered', entered: 'entered', left: 'left' }
