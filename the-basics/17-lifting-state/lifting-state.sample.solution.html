@@ -1,0 +1,79 @@
+<html>
+
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel"> 
+  function FivekDecision(props) {
+    return props.kilometers >= 5
+    ? <div>You completed the 5k!</div>
+    : <div>Keep going! You're not done yet!</div>
+  }
+
+  const mileToKilometerConversion = 1.609
+  function toMiles(kilometers) {
+    return kilometers / mileToKilometerConversion
+  }
+  function toKilometers(miles) {
+    return miles * mileToKilometerConversion
+  }
+  function tryConvert(distance, convert) {
+    if (Number.isNaN(Number(distance))) return 0
+    const convertedDistance = convert(distance)
+    const roundedConvertedDistance = Math.round(convertedDistance * 1000) / 1000
+    return roundedConvertedDistance
+  }
+
+  class DistanceInput extends React.Component {
+    render() {
+      return (
+        <>
+          <fieldset>
+            <legend>{this.props.distanceType} ran:</legend>
+            <input value={this.props.distance} onChange={this.props.onDistanceChange} />
+          </fieldset>
+        </>
+      )
+    }
+  }
+
+  class Run extends React.Component {
+    constructor(props) {
+      super(props)
+      this.handleKilometerChange = this.handleKilometerChange.bind(this)
+      this.handleMileChange = this.handleMileChange.bind(this)
+      this.state = { distance: 0, distanceType: 'Kilometers' }
+    }
+
+    handleKilometerChange(e) {
+      this.setState({ distance: e.target.value, distanceType: 'Kilometers' })
+    }
+    handleMileChange(e) {
+      this.setState({ distance: e.target.value, distanceType: 'Miles' })
+    }
+
+     render() {
+       const distanceType = this.state.distanceType
+       const distance = this.state.distance
+       const kilometers = distanceType === 'Kilometers' ? distance : tryConvert(distance, toKilometers)
+       const miles = distanceType === 'Miles' ? distance : tryConvert(distance, toMiles)
+
+      return (
+        <>
+          <DistanceInput distanceType="Kilometers" distance={kilometers} onDistanceChange={this.handleKilometerChange} />
+          <DistanceInput distanceType="Miles" distance={miles} onDistanceChange={this.handleMileChange} />
+          <FivekDecision kilometers={parseFloat(kilometers)} />
+        </>
+      )
+    }
+  }
+  ReactDOM.render(<Run />, root);
+</script>
+
+</html>

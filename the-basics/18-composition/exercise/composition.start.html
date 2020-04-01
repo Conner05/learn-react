@@ -1,0 +1,56 @@
+<html>
+
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel"> 
+  function Inside(props) {
+    return (
+      <button onClick={props.handleClick}>Leave</button>
+    )
+  }
+  function Outside(props) {
+    return (
+      <button onClick={props.handleClick}>Enter</button>
+    )
+  }
+
+  const STATUS = { neverEntered: 'neverEntered', entered: 'entered', left: 'left' }
+
+  class App extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = { status: STATUS.neverEntered }
+      this.handleEnter = this.handleEnter.bind(this)
+      this.handleLeave = this.handleLeave.bind(this)
+    }
+
+    handleEnter() {
+      this.setState({ status: STATUS.entered })
+    }
+
+    handleLeave() {
+      this.setState({ status: STATUS.left })
+    }
+
+    render() {
+      return (
+      <>
+        {this.state.status === STATUS.entered ? <Inside handleClick={this.handleLeave} /> : <Outside handleClick={this.handleEnter} />}
+        {this.state.status === STATUS.entered && 
+          <div style={{border: 'solid 5px pink', margin: 20, padding: 20, fontSize: 16}}>Hello there!</div>
+        }
+      </>
+      )
+    }
+  }
+  ReactDOM.render(<App />, root);
+</script>
+
+</html>

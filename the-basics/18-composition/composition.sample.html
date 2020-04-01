@@ -1,0 +1,45 @@
+<html>
+
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel"> 
+  function PrettyTable(props) {
+    return (
+      <div style={{color: 'pink', fontSize: 16, margin: '0 auto', width: 200}}>
+        {props.children}
+      </div>
+    )
+  }
+
+  function Message(props) {
+    return (
+      <>
+        <h1>{props.title}</h1>
+        <p>{props.content}</p>
+      </>
+    )
+  }
+  function WelcomeMessage() {
+    return (
+      <Message title='Hello' content='From the other side' />
+    )
+  }
+
+  class App extends React.Component {
+     render() {
+      return (
+        <WelcomeMessage />
+      )
+    }
+  }
+  ReactDOM.render(<App />, root);
+</script>
+
+</html>
