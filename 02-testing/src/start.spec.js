@@ -1,16 +1,16 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import One from './start'
+import Start from './start'
 
-describe('One', () => {
+describe('Start', () => {
   it('should show Enter button on render', () => {
-    const { getByText } = render(<One />)
+    const { getByText } = render(<Start />)
     const enterButton = getByText(/Enter/i)
     expect(enterButton).toBeInTheDocument()
   })
 
   it('should show Leave button after clicking Enter', () => {
-    const { getByText } = render(<One />)
+    const { getByText } = render(<Start />)
     const enterButton = getByText(/Enter/i)
     enterButton.click()
     const leaveButton = getByText(/Leave/i)
@@ -18,7 +18,7 @@ describe('One', () => {
   })
 
   it('should not show Enter button after clicking Enter', () => {
-    const { getByText, queryByText } = render(<One />)
+    const { getByText, queryByText } = render(<Start />)
     let enterButton = getByText(/Enter/i)
     enterButton.click()
     enterButton = queryByText(/Enter/i)
@@ -26,7 +26,7 @@ describe('One', () => {
   })
 
   it('should not show Leave button after clicking Leave', () => {
-    const { getByText, queryByText } = render(<One />)
+    const { getByText, queryByText } = render(<Start />)
     const enterButton = getByText(/Enter/i)
     enterButton.click()
     let leaveButton = getByText(/Leave/i)
@@ -36,7 +36,7 @@ describe('One', () => {
   })
 
   it('should show Greeting message after clicking Enter', () => {
-    const { getByText } = render(<One />)
+    const { getByText } = render(<Start />)
     const enterButton = getByText(/Enter/i)
     enterButton.click()
     const greeting = getByText(/Hello there!/i)
@@ -44,7 +44,7 @@ describe('One', () => {
   })
 
   it('should hide Greeting message after clicking Leave', () => {
-    const { getByText, queryByText } = render(<One />)
+    const { getByText, queryByText } = render(<Start />)
     const enterButton = getByText(/Enter/i)
     enterButton.click()
     const leaveButton = getByText(/Leave/i)

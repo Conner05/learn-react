@@ -15,7 +15,7 @@ const GoodbyeMessage = () => <Message content='See you later!' />
 const Inside = (props) => <button onClick={props.handleClick}>Leave</button>
 const Outside = (props) => <button onClick={props.handleClick}>Enter</button>
 
-class One extends React.Component {
+class Solution extends React.Component {
   constructor(props) {
     super(props)
     this.state = { status: this.STATUS.neverEntered }
@@ -46,4 +46,4 @@ class One extends React.Component {
   }
 }
 
-export default One
+export default Solution

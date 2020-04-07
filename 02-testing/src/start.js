@@ -3,7 +3,7 @@ import React from 'react'
 const Inside = (props) => <button onClick={props.handleClick}>Leave</button>
 const Outside = (props) => <button onClick={props.handleClick}>Enter</button>
 
-class One extends React.Component {
+class Start extends React.Component {
   constructor(props) {
     super(props)
     this.state = { status: this.STATUS.neverEntered }
@@ -26,4 +26,4 @@ class One extends React.Component {
   }
 }
 
-export default One
+export default Start

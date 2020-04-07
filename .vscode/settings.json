@@ -3,4 +3,5 @@
   "jest.rootPath": "02-testing",
   "jest.debugMode": true,
   "jest.pathToJest": "yarn test --",
+  "jestrunner.configPath": "02-testing/package.json",
 }

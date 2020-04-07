@@ -1,20 +1,22 @@
 import React from 'react'
-import One from './start'
+import Start from './start'
+import Solution from './solution'
 import './App.css'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { activeLesson: 0 }
+    this.state = { activeLesson: 'Clear' }
   }
-  lessons = [<></>, <One />]
-  lessonsIndex = []
-
-  handleClick = (lessonIndex) => this.setState({ activeLesson: lessonIndex })
-  handleClearClick = () => this.setState({ activeLesson: 0 })
+  lessons = [
+    { name: 'Start', component: <Start /> },
+    { name: 'Solution', component: <Solution /> },
+    { name: 'Clear', component: <></> }
+  ]
+  handleClick = (lessonName) => this.setState({ activeLesson: lessonName })
 
   render() {
-    const activeLesson = this.lessons[this.state.activeLesson]
+    const { component: activeLesson } = this.lessons.find((lesson) => lesson.name === this.state.activeLesson)
     return (
       <div className="App">
         <div className="col col-center">
@@ -22,12 +24,11 @@ class App extends React.Component {
             <h3>Select Lesson</h3>
           </div>
           <div className="row lesson-select">
-            {this.lessons.map((lesson, index) => {
-              return index > 0 ? <button data-testid="lesson-button" key={index} onClick={() => this.handleClick(index)}>{index}</button> : null
+            {this.lessons.map(({ name }) => {
+              return <button key={name} onClick={() => this.handleClick(name)}>{name}</button>
             })}
-            <button onClick={this.handleClearClick}>Clear</button>
           </div>
-          {this.state.activeLesson > 0 && <div data-testid="lesson" className="row lesson">
+          {this.state.activeLesson !== 'Clear' && <div data-testid={`${this.state.activeLesson}-lesson`} className="row lesson">
             {activeLesson}
           </div>}
         </div>
