@@ -1,5 +1,4 @@
 import React from 'react'
-import '../App.css'
 
 function PrettyBorder(props) {
   return (
@@ -9,44 +8,23 @@ function PrettyBorder(props) {
   )
 }
 
-function Message(props) {
-  return (
-    <PrettyBorder>
-      {props.content}
-    </PrettyBorder>
-  )
-}
-function GreetingMessage() {
-  return <Message content='Hello there!' />
-}
-function GoodbyeMessage() {
-  return <Message content='See you later!' />
-}
+const Message = (props) => <PrettyBorder>{props.content}</PrettyBorder>
+const GreetingMessage = () => <Message content='Hello there!' />
+const GoodbyeMessage = () => <Message content='See you later!' />
 
-function Inside(props) {
-  return <button onClick={props.handleClick}>Leave</button>
-}
-function Outside(props) {
-  return <button onClick={props.handleClick}>Enter</button>
-}
+const Inside = (props) => <button onClick={props.handleClick}>Leave</button>
+const Outside = (props) => <button onClick={props.handleClick}>Enter</button>
 
 class One extends React.Component {
   constructor(props) {
     super(props)
     this.state = { status: this.STATUS.neverEntered }
-    this.handleEnter = this.handleEnter.bind(this)
-    this.handleLeave = this.handleLeave.bind(this)
   }
 
   STATUS = { neverEntered: 'neverEntered', entered: 'entered', left: 'left' }
 
-  handleEnter() {
-    this.setState({ status: this.STATUS.entered })
-  }
-
-  handleLeave() {
-    this.setState({ status: this.STATUS.left })
-  }
+  handleEnter = () => this.setState({ status: this.STATUS.entered })
+  handleLeave = () => this.setState({ status: this.STATUS.left })
 
   render() {
     let message

@@ -1,5 +1,5 @@
 import React from 'react'
-import One from './01/start'
+import One from './start'
 import './App.css'
 
 class App extends React.Component {
