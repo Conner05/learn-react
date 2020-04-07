@@ -1,6 +1,5 @@
 import React from 'react'
 import One from './01/start'
-import Two from './02/start'
 import './App.css'
 
 class App extends React.Component {
@@ -8,7 +7,7 @@ class App extends React.Component {
     super(props)
     this.state = { activeLesson: 0 }
   }
-  lessons = [<></>, <One />, <Two />]
+  lessons = [<></>, <One />]
   lessonsIndex = []
 
   handleClick = (lessonIndex) => this.setState({ activeLesson: lessonIndex })
