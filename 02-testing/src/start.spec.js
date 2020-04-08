@@ -9,6 +9,12 @@ describe('Start', () => {
     expect(enterButton).toBeInTheDocument()
   })
 
+  it('should not show Greeting message on render', () => {
+    const { queryByText } = render(<Start />)
+    const greeting = queryByText(/Hello there!/i)
+    expect(greeting).toBeNull()
+  })
+
   it('should show Leave button after clicking Enter', () => {
     const { getByText } = render(<Start />)
     const enterButton = getByText(/Enter/i)

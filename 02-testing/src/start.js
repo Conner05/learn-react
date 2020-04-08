@@ -17,7 +17,9 @@ class Start extends React.Component {
   render() {
     return (
       <div>
-        {this.state.status === this.STATUS.entered ? <Inside handleClick={this.handleLeave} /> : <Outside handleClick={this.handleEnter} />}
+        {this.state.status === this.STATUS.entered
+          ? <Inside handleClick={this.handleLeave} />
+          : <Outside handleClick={this.handleEnter} />}
         {this.state.status === this.STATUS.entered &&
           <div style={{ border: 'solid 5px pink', margin: 20, padding: 20, fontSize: 16 }}>Hello there!</div>
         }
