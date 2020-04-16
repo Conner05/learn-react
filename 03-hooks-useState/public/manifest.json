@@ -1,6 +1,6 @@
 {
-  "short_name": "Learn React - Testing",
-  "name": "Learn React - Testing",
+  "short_name": "Learn React - Hooks - useState",
+  "name": "Learn React - Hooks - useState",
   "icons": [],
   "start_url": ".",
   "display": "standalone",

@@ -82,6 +82,4 @@ describe('Solution', () => {
     goodbye = queryByText(/See you later!/i)
     expect(goodbye).toBeNull()
   })
-
 })
-
