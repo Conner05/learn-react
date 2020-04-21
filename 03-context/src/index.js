@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import AppWithContext from './AppWithContext'
+import AppWithUseContext from './AppWithUseContext'
+import AppWithComposition from './AppWithComposition'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AppWithComposition />
   </React.StrictMode>,
   document.getElementById('root')
 );

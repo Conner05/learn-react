@@ -503,4 +503,3 @@ const handleIdChange = (e) => !Number.isNaN(+e.target.value) && setPokemonId(+e.
 ```
 
 And we're done! We've finished implementing the requirements. Stay tuned for the more information on `useEffect` in the **Best Practices** lesson.
-
