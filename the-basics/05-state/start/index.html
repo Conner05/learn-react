@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<style>
+    .red {
+        color: red;
+    }
+
+    .blue {
+        color: blue;
+    }
+</style>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    /****************************************************
+        SUMMARY:
+        Introducing state and lifecycle methods. In this ticking clock example we'll transform 
+        the clock into a reusable component that is encapsulated.
+
+        TODO:
+        -   refactor the element to its own Component that accepts props with a date property
+            and render that in place of element, passing the date prop.
+            -   the problem we still have is that the updating of the clock still happens outside
+                the component (setInterval()). That ough to be an implementation detail of the
+                component itself.
+        -   convert the Clock component to a class (if you made it a function) and introduce state
+            in place of the date prop - https://reactjs.org/docs/state-and-lifecycle.html
+        -   after that's done, we now need to have the class component run the setInterval()
+            -   this is where mounting comes in. React class component's have two lifecycle
+                methods: componentDidMount() and componentWillUnmount(), the first for when the
+                component is rendered, and the second for when it is destroyed.
+            -   we will use the componentDidMount() method to implement our timer (setInterval())
+            -   since setInterval() has a return value, we'll be sure to set it as a variable on
+                the class so we can use the clearInterval() method in componentWillUnmount()
+    *****************************************************/
+
+    function tick() {
+        const element = <div><h2>Time: {new Date().toLocaleTimeString()}</h2></div>
+        ReactDOM.render(element, document.getElementById('root'));
+    }
+    setInterval(tick, 1000);
+</script>
+
+</html>

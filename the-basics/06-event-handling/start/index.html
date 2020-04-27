@@ -1,0 +1,45 @@
+<html>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<head>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    /****************************************************
+        SUMMARY:
+        Handling events in React is similar to handling events in Javascript.
+        There are some things you need to know that are different, though.
+        - React events are camelCased, whereas Javascript events are lowercase (onclick vs. onClick).
+        - In JSX you pass a function as the event handler, 
+          as opposed to a string value (onclick="handleClick()" vs. onClick={handleClick}).
+        - You cannot return false to prevent default behavior in React like you can in Javascript
+          Instead, you need to call preventDefault() explicitly
+
+        TODO:
+        - modify the following Javascript to the "React way"
+        - note you'll need to use tools you've learned in previous modules to do this
+        - https://reactjs.org/docs/handling-events.html
+    *****************************************************/
+
+    function handleSubmit(e) {
+        label.innerHTML = input.value;
+    }
+
+    const root = document.getElementById('root');
+    const input = document.createElement('input');
+    const button = document.createElement('button');
+    button.innerHTML = 'Submit';
+    button.onclick = function() {handleSubmit()};
+
+    const label = document.createElement('label');
+    label.style.marginLeft = '20px';
+
+    root.appendChild(input);
+    root.appendChild(button);
+    root.appendChild(label);  
+</script>
+
+</html>

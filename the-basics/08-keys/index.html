@@ -1,0 +1,73 @@
+<html>
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  /**************************************************** 
+    SUMMARY
+    I stole this from Kent Dodds (but modified to class components) because
+    I think it explains how keys work really well. Here's his article: 
+    https://kentcdodds.com/blog/understanding-reacts-key-prop
+
+    Watch the console logs as you click the different buttons.
+    Notice the Counter doesn't re-render until the key property changes.
+
+  *****************************************************/
+  class Counter extends React.Component {
+    constructor(props) {
+      console.log('counter initialized')
+      super(props);
+      this.state = {count: 0};
+      this.increment = this.increment.bind(this);
+    }
+
+    componentWillMount() {
+      console.log('counter mounted');
+    }
+
+    componentWillUnmount() {
+      console.log('counter unmounted (cleanup)');
+    }
+
+    increment() {
+      console.log('incrementing state');
+      this.setState({count: this.state.count + 1});
+    }
+
+    render() {
+      console.log('counter rendering');
+      return <button onClick={this.increment}>{this.state.count}</button>
+    }
+  }
+
+  class App extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {counterKey: false};
+      this.setCounterKey = this.setCounterKey.bind(this);
+    }
+
+    setCounterKey() {
+      // the goal here is just ensure the state changes - it can change to anything
+      // the changing of the state is what triggers the re-render of the Counter component
+      // via the key prop
+      this.setState({counterKey: !this.state.counterKey});
+    }
+
+    render() {
+      return (
+      <div>
+        <button onClick={this.setCounterKey}>reset</button>
+        <Counter key={this.state.counterKey} />
+      </div>
+      )
+    }
+  }
+  ReactDOM.render(<App />, root);
+</script>
+</html>

@@ -1,0 +1,47 @@
+<html>
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  /****************************************************
+    SOLUTION
+   
+    NOTES:
+    We moved the logic from the render() method into the JSX with a ternary statement.
+  *****************************************************/
+
+  function This() {
+    return <div>THIS</div>
+  }
+
+  function That() {
+    return <div>THAT</div>
+  }
+
+  class App extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { this: true };
+    }
+
+    handleClick = () => {
+      this.setState({this: !this.state.this});
+    }
+
+    render() {
+      return (
+        <div>
+          <button onClick={this.handleClick}>Switch</button>
+          {this.state.this ? <This /> : <That />}
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<App />, root);
+</script>
+</html>

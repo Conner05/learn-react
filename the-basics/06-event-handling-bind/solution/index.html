@@ -1,0 +1,52 @@
+<html>
+
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  /****************************************************
+      SOLUTION
+
+      NOTES:
+      There's quite a bit going on here. Let's talk about it.
+      - we did not use preventDefault() because we're not in a <form>
+      - we introduced the onChange={} attribute
+      - we used state with multiple properties
+  *****************************************************/
+
+  class App extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { inputValue: '', labelValue: '' };
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleSubmit(e) {
+      this.setState({ labelValue: this.state.inputValue })
+    }
+
+    handleInputChange(e) {
+      this.setState({ inputValue: e.target.value })
+    }
+
+    render() {
+      return (
+        <div>
+          <input type="text" name='test' onChange={this.handleInputChange} value={this.state.inputValue} />
+          <button type="submit" onClick={this.handleSubmit}>Submit</button>
+          <label style={{ marginLeft: '20px' }}>{this.state.labelValue}</label>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<App />, root);
+</script>
+
+</html>
