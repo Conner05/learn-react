@@ -52,9 +52,9 @@ useEffect(() => {
 })
 ```
 
-Interestingly enough, the array is optional. The *effect* of this scenario is even more interesting. When there is no array, `useEffect` just runs repeatedly with no end. It's similar to `setTimeout(() => action())`. No `delay` was given in the `setTimeout` nor is it destroyed anywhere - it just runs.
+Interestingly enough, the array is optional. The *effect* of this scenario is even more interesting. When there is no array, `useEffect` just runs on every re-render.
 
-**You will likely never want to do this.**
+**You will likely rarely want to do this.**
 
 ## *Array with items (dependencies)*
 

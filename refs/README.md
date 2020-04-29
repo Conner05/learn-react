@@ -405,3 +405,105 @@ Use ref forwarding wisely. Think about encapsulation and the reusability of your
 Forwarding refs also make a lot of sense for use in Higher Order Components (HOCs). However, we'll give an example of that when talk more about HOCs in depth. For now, just know that's a valid place for their use.
 
 ## `useRef()`
+
+Remember how earlier we said there was an even more powerful way to handle refs than `React.createRef()` and *ref forwarding*? That way is through `useRef()`, brought to us by React hooks. You can see the docs for it [here](https://reactjs.org/docs/hooks-reference.html#useref).
+
+`useRef()` gives us the ability to reference a DOM element inside a function component while also engaging in functionality with it. To introduce this, let's refactor our first example where we using `React.createRef()` to manage our `input`'s focus.
+
+```jsx
+function FirstName(props) {
+  return (
+    <>
+      <label>First Name</label>
+      <input ref={props.firstNameRef} id="firstName" onChange={(e) => props.onChange(e, 'firstName')} value={props.firstName} />
+    </>
+  )
+}
+
+function LastName(props) {
+  return (
+    <>
+      <label>Last Name</label>
+      <input id="lastName" onChange={(e) => props.onChange(e, 'lastName')} value={props.lastName} />
+    </>
+  )
+}
+
+function ManagingFocusWithUseRef() {
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const firstNameRef = useRef()
+  
+  const handleClick = () => {
+    firstNameRef.current.focus()
+  }
+  return (
+    <div>
+      <FirstName firstNameRef={firstNameRef} onChange={(e) => setFirstName(e.target.value)} value={firstName} />
+      <LastName onChange={(e) => setLastName(e.target.value)} value={lastName} />
+      <button onClick={handleClick}>Focus First Name</button>
+    </div>
+  )
+}
+```
+
+Instead of `createRef()` we use `useRef()`. Also, notice we didn't use `ref={}` on `FirstName`. We made our own prop. `ref` is reserved and cannot be used as a prop.
+
+Unfortunately, with all function components we have to take the *ref forwarding* approach, which breaks the nice encapsulation we get out the `class` way of handling refs. You see this in action in our `handleClick()` method. We're referencing the `input` DOM element directly with `focus()`. This is because function components do not expose methods like `class components do. So, making a `ref` to a function component means breaking encapsulation, even when using `useRef()`, which is kind of a bummer.
+
+One cool thing about `useRef()` is that it can be used for more than just referencing DOM elements. in fact, you'll probably see it used to reference values like strings and numbers more often than you will DOM elements.
+
+`useRef()` is kind of like `useState()`. The key difference is when values controlled via `useState()` update a re-render is triggered. With `useRef()`, when a value updates, no re-render is triggered. The cool thing about it, though, is that `useRef()` remembers the value on re-render. So, it'll hold a value for the lifetime of the component, just like `useState()`.
+
+Another difference between `useState()` and `useRef()` is the means by which their values are updated. `useState()` uses the `setState()` method. `useRef()`, on the other hand, utilizes the `current` property on the ref. You simply set the `current` value to what you'd like, much like a typical variable.
+
+Let's see this in action.
+
+```jsx
+function FirstName(props) {
+  return (
+    <>
+      <label>First Name</label>
+      <input ref={props.inputRef} />
+    </>
+  )
+}
+
+function LastName(props) {
+  return (
+    <>
+      <label>Last Name</label>
+      <input ref={props.inputRef} />
+    </>
+  )
+}
+
+function ManagingStateWithUseRef() {
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const firstNameRef = useRef()
+  const lastNameRef = useRef()
+  
+  const handleClick = () => {
+    setFirstName(firstNameRef.current.value)
+    setLastName(lastNameRef.current.value)
+  }
+  return (
+    <div>
+      <FirstName inputRef={firstNameRef} />
+      <LastName inputRef={lastNameRef} />
+      <button onClick={handleClick}>Display input state</button>
+      <hr />
+      <span>{`${firstName} ${lastName}`}</span>
+    </div>
+  )
+}
+```
+
+Key things to note from the code above:
+- We removed the `onChange` and `value` attributes from all `input` elements and replaced them with `ref`. Instead of *controlled components*, we now have *uncontrolled components*.
+- We only passed `inputRef` as a `prop` since now we only need access to the reference.
+- `handleClick()` sets the `firstName` and `lastName` state variables.
+
+What's the advantage, if any, of managing state this way? `useRef()` values do not trigger a re-render when updated. So, before, when the `input` elements were managed with `useState()` values, a re-render would fire on every keystroke. This is the nature of a controlled component. However, now, with `useRef()` we have uncontrolled components. So, the value of each `input` is not known until it is referenced from `ref.current.value`, as you see in our `handleClick()` method. Does this mean we should start using refs to manage `input` state for the sake of performance? No, not really. Utilize `useRef()` for state management if you see that `useState()` managed values are triggering too many re-renders, causing unexpected behavior or slowness in your app. Otherwise, you're fine to stick with `useState()`.
+
